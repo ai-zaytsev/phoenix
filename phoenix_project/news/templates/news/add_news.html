@@ -1,0 +1,38 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'homepage' %}">Main</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" disabled>Add news</a>
+        </li>
+    </ul>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Got something you wish to tell the world?</h4>
+                <form action="{% url 'add_news' %}" method="post">
+                  {% csrf_token %}
+
+                  {{ form.as_p }}
+
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </form>
+            </div>
+        </div>        
+    </div>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
